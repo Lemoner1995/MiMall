@@ -1,13 +1,34 @@
 <template>
   <div id="app">
-    <div id="nav">
+    <!-- <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
-    </div>
+    </div> -->
     <router-view/>
+    <!-- <HelloWorld :msg=message></HelloWorld> -->
   </div>
 </template>
+<script>
+// import HelloWorld from './components/HelloWorld'
+// import axios from 'axios'
+export default {
+  name: 'app'
+  // data () {
+  //   return {
+  //     age: 30,
+  //     message: 'Hello'
 
+  //   }
+  // },
+  // mounted () {
+  //   // let url = ""
+  //   // axios.get()
+  // },
+  // components: {
+  //   HelloWorld
+  // }
+}
+</script>
 <style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
