@@ -1,12 +1,11 @@
 <template>
     <div>
-      orderConfirm
+        <h3>footer</h3>
     </div>
 </template>
 
 <script>
-
 export default {
-  name: 'order-confirm'
+  name: 'nav-footer'
 }
 </script>

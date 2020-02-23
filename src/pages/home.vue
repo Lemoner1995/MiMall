@@ -1,13 +1,17 @@
 <template>
     <div>
       <nav-header></nav-header>
+      <h1>home</h1>
       <router-view></router-view>
-      <nav-footrt></nav-footrt>
+      <nav-footer></nav-footer>
     </div>
 </template>
 
 <script>
+import NavHeader from './../components/NavHeader'
+import NavFooter from './../components/NavFooter'
 export default {
-  name: 'nav-header'
+  name: 'nav-home',
+  components: { NavHeader, NavFooter }
 }
 </script>
