@@ -9,10 +9,11 @@
   </div>
 </template>
 <script>
+import storage from './storage/index'
 // import HelloWorld from './components/HelloWorld'
 // import axios from 'axios'
 export default {
-  name: 'app'
+  name: 'app',
   // data () {
   //   return {
   //     age: 30,
@@ -24,9 +25,14 @@ export default {
   //   // let url = ""
   //   // axios.get()
   // },
-  // components: {
-  //   HelloWorld
-  // }
+  components: {
+  },
+  mounted () {
+    storage.setItem('a', 1)
+    // storage.setItem('user', { a: 1 })
+    // storage.setItem('abc', { a: 1 }, 'user')
+    // storage.clear('a')
+  }
 }
 </script>
 <style lang="scss">
