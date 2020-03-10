@@ -6,10 +6,15 @@ import VueAxios from 'vue-axios'
 import store from './store'
 // import env from './env'
 // 根据前端的跨域方式做调整
-// axios.defaults.baseURL = '/api'
-// axios.defaults.baseURL = 'http://test-www.imooc.com/api'
-axios.defaults.timeout = 8000
 
+// axios.defaults.baseURL = 'http://test-www.imooc.com/api'
+// mock 开关
+const mock = true
+if (mock) {
+  require('./mock/api')
+}
+axios.defaults.timeout = 8000
+axios.defaults.baseURL = '/api'
 // 根据环境变量获取不同的请求地址
 // axios.defaults.baseURL = env.baseURL
 // axios.defaults.timeout = 8000
