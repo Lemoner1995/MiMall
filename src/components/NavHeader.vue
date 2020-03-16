@@ -181,7 +181,7 @@ export default {
   name: 'nav-header',
   data () {
     return {
-      // username: 'Narcissus',
+      username: 'Narcissus',
       phoneList: []
     }
   },
