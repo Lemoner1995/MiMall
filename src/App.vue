@@ -63,6 +63,7 @@ export default {
 //     }
 //   }
 // }
+@import './assets/scss/base.scss';
 @import './assets/scss/reset.scss';
 @import './assets/scss/config.scss';
 </style>

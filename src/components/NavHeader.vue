@@ -202,12 +202,13 @@ export default {
           pageSize: 6
         }
       }).then(res => {
-        // console.log(res)
+        console.log(res)
         // console.log(typeof res.list)
-        if (res.list.length > 6) {
-          this.phoneList = res.list.slice(0, 6)
-          // console.log(this.phoneList)
-        }
+        // if (res.list.length > 6) {
+        // this.phoneList = res.list.slice(0, 6)
+        this.phoneList = res.list
+        console.log(this.phoneList)
+        // }
         // Math.max(res.list, 6)
       })
     },
@@ -314,7 +315,7 @@ export default {
               height: 0;
               border-top: 1px solid #E5E5E5;
               box-shadow: 0 7px 6px 0 rgba(0,0,0,0.11);
-              // background-color: #ffffff;
+              background-color: #ffffff;
               z-index: 10;
               transition: height .5s;
               .product{
