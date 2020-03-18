@@ -308,7 +308,7 @@ export default {
               // display: none;
               opacity: 0;
               position:absolute;
-              height: 220px;
+              // height: 220px;
               top: 112px;
               left: 0;
               width: 100%;
