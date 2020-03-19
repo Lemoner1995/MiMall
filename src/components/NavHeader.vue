@@ -251,8 +251,9 @@ export default {
       }
     }
     .nav-header{
-      .container{
         position: relative;
+      .container{
+        // position: relative;
         height: 112px;
         @include flex();
         .header-logo{

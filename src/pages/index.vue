@@ -66,8 +66,33 @@
             <img src="/imgs/banner-1.png" alt="">
           </a>
         </div>
-        <div class="product-box"></div>
       </div>
+      <div class="product-box">
+          <div class="container">
+            <h2>手机</h2>
+            <div class="wrapper">
+              <div class="banner-left">
+                <a href="/#/product/35"><img src="/imgs/mix-alpha.jpg" alt=""></a>
+              </div>
+              <div class="list-box">
+                <div class="list" v-for="(item, index1) in phoneList" :key="index1">
+                  <div class="item" v-for="(arr, index2) in item" :key="index2">
+                    <span>新品</span>
+                    <div class="item-img">
+                      <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/0099822e42b4428cb25c4cdebc6ca53d.jpg?thumb=1&w=200&h=200&f=webp&q=90" alt="">
+                    </div>
+                    <div class="item-info">
+                      <h3>小米9</h3>
+                      <p>骁龙855</p>
+                      <p class="price">2999元</p>
+                    </div>
+                  </div>
+                </div>
+                <!-- <div class="list"></div> -->
+              </div>
+            </div>
+          </div>
+        </div>
       <service-bar></service-bar>
     </div>
 </template>
@@ -105,6 +130,9 @@ export default {
           prevEl: '.swiper-button-prev'
         }
       },
+      phoneList: [
+        [1, 1, 1, 1], [1, 1, 1, 1]
+      ],
       slideList: [
         { id: '42', img: '/imgs/slider/slide-1.jpg' },
         { id: '45', img: '/imgs/slider/slide-2.jpg' },
@@ -231,6 +259,75 @@ export default {
     }
     .banner{
       margin-bottom: 50px;
+    }
+    .product-box{
+      background-color: $colorJ;
+      padding: 30px 0 50px;
+      h2{
+        font-size: 22px;
+        height: 21px;
+        line-height: 21px;
+        color: $colorB;
+        margin-bottom: 20px;
+      }
+      .wrapper{
+        display: flex;
+        .banner-left{
+          margin-right: 16px;
+            width: 224px;
+            height:619px;
+            img{
+              width: 100%;
+              height: 100%;
+            }
+        }
+        .list-box{
+          .list{
+            @include flex();
+            width: 986px;
+            margin-bottom: 14px;
+            &:last-child{
+              margin-bottom: 0px;
+            }
+            .item{
+              width: 236px;
+              height: 302px;
+              background-color: $colorG;
+              text-align: center;
+              span{
+              }
+              .item-img{
+                height: 195px;
+              }
+              .item-info{
+                h3{
+                  font-size: $fontJ;
+                  color: $colorB;
+                  line-height: $fontJ;
+                  font-weight: bold;
+                }
+                p{
+                  color: $colorD;
+                  line-height: 13px;
+                  margin: 6px auto 13px;
+                }
+                .price{
+                  color: #F20A0A;
+                  font-size: $fontJ;
+                  font-weight: bold;
+                  cursor: pointer;
+                  &::after{
+                    content: '';
+                    margin-left: 5px;
+                    @include bgImg(22px,22px,'/imgs/icon-cart-hover.png');
+                    vertical-align: middle;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 </style>
