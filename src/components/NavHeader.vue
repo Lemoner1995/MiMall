@@ -29,7 +29,7 @@
                   <li class="product" v-for="(item,index) in phoneList" :key="index">
                     <a v-bind:href="'/#/product/'+item.id" target="_blank">
                       <div class="pro-img">
-                        <img :src="item.mainImage" alt="item.subtitle">
+                        <img v-lazy="item.mainImage" alt="item.subtitle">
                       </div>
                       <div class="pro-name">{{item.name}}</div>
                       <div class="pro-price">{{item.price | currency}}</div>
@@ -45,7 +45,7 @@
                   <li class="product">
                     <a href="" target="_blank">
                       <div class="pro-img">
-                        <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/cff2977b8aab1e43b94b2f00083f4ae1.jpg?thumb=1&w=160&h=110&f=webp&q=90" alt="">
+                        <img v-lazy="'https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/cff2977b8aab1e43b94b2f00083f4ae1.jpg?thumb=1&w=160&h=110&f=webp&q=90'" alt="">
                       </div>
                       <div class="pro-name">RedMi K30</div>
                       <div class="pro-price">1599元</div>
@@ -110,7 +110,7 @@
                   <li class="product">
                     <a href="" target="_blank">
                       <div class="pro-img">
-                        <img src="/imgs/nav-img/nav-3-1.jpg" alt="">
+                        <img v-lazy="'/imgs/nav-img/nav-3-1.jpg'" alt="">
                       </div>
                       <div class="pro-name">小米壁画电视 65寸</div>
                       <div class="pro-price">6999元</div>
@@ -119,7 +119,7 @@
                   <li class="product">
                     <a href="" target="_blank">
                       <div class="pro-img">
-                        <img src="/imgs/nav-img/nav-3-2.jpg" alt="">
+                        <img v-lazy="'/imgs/nav-img/nav-3-2.jpg'" alt="">
                       </div>
                       <div class="pro-name">小米全面屏电视E55A</div>
                       <div class="pro-price">1999元</div>
@@ -128,7 +128,7 @@
                   <li class="product">
                     <a href="" target="_blank">
                       <div class="pro-img">
-                        <img src="/imgs/nav-img/nav-3-3.png" alt="">
+                        <img v-lazy="'/imgs/nav-img/nav-3-3.png'" alt="">
                       </div>
                       <div class="pro-name">小米电视4A 32寸</div>
                       <div class="pro-price">699元</div>
@@ -137,7 +137,7 @@
                   <li class="product">
                     <a href="" target="_blank">
                       <div class="pro-img">
-                        <img src="/imgs/nav-img/nav-3-4.jpg" alt="">
+                        <img v-lazy="'/imgs/nav-img/nav-3-4.jpg'" alt="">
                       </div>
                       <div class="pro-name">小米电视4A 55寸</div>
                       <div class="pro-price">1799元</div>
@@ -146,7 +146,7 @@
                   <li class="product">
                     <a href="" target="_blank">
                       <div class="pro-img">
-                        <img src="/imgs/nav-img/nav-3-5.jpg" alt="">
+                        <img v-lazy="'/imgs/nav-img/nav-3-5.jpg'" alt="">
                       </div>
                       <div class="pro-name">小米电视4A 65寸</div>
                       <div class="pro-price">2699元</div>
@@ -155,7 +155,7 @@
                   <li class="product">
                     <a href="" target="_blank">
                       <div class="pro-img">
-                        <img src="/imgs/nav-img/nav-3-6.jpg" alt="">
+                        <img v-lazy="'/imgs/nav-img/nav-3-6.jpg'" alt="">
                       </div>
                       <div class="pro-name">查看全部</div>
                       <div class="pro-price">查看全部</div>
@@ -305,6 +305,9 @@ export default {
               }
             }
             .children{
+              // width: 1226px;
+              margin-left: auto;
+              margin-right: auto;
               overflow: hidden;
               // display: none;
               opacity: 0;
@@ -319,6 +322,11 @@ export default {
               background-color: #ffffff;
               z-index: 10;
               transition: height .5s;
+              ul{
+                width: 1226px;
+                margin-left: auto;
+                margin-right: auto;
+              }
               .product{
                 position: relative;
                 float: left;
