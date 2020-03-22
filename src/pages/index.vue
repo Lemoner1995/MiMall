@@ -77,14 +77,14 @@
               <div class="list-box">
                 <div class="list" v-for="(item, index1) in phoneList" :key="index1">
                   <div class="item" v-for="(arr, index2) in item" :key="index2">
-                    <span>新品</span>
+                    <span :class="{'new-pro':index2%2==0}">新品</span>
                     <div class="item-img">
-                      <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/0099822e42b4428cb25c4cdebc6ca53d.jpg?thumb=1&w=200&h=200&f=webp&q=90" alt="">
+                      <img :src="arr.mainImage" alt="">
                     </div>
                     <div class="item-info">
-                      <h3>小米9</h3>
-                      <p>骁龙855</p>
-                      <p class="price">2999元</p>
+                      <h3>{{arr.name}}</h3>
+                      <p>{{arr.subtitle}}</p>
+                      <p class="price" @click="addCart(arr.id)">{{arr.price | currency}}</p>
                     </div>
                   </div>
                 </div>
@@ -94,18 +94,25 @@
           </div>
         </div>
       <service-bar></service-bar>
+      <modal title="提示" sureText="查看购物车" btnType="1" modalType="middle" @confirm="confirm" @cancel="showModal=false" :showModal="showModal">
+        <template v-slot:body>
+          <p>商品添加成功</p>
+        </template>
+      </modal>
     </div>
 </template>
 
 <script>
 import ServiceBar from './../components/ServiceBar'
+import Modal from './../components/Modal'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
 import 'swiper/dist/css/swiper.css'
 export default {
   name: 'index',
-  components: { ServiceBar, swiper, swiperSlide },
+  components: { Modal, ServiceBar, swiper, swiperSlide },
   data () {
     return {
+      showModal: false,
       swiperOption: {
         autoplay: { delay: 3000, disableOnInteraction: false },
         speed: 1000,
@@ -130,9 +137,7 @@ export default {
           prevEl: '.swiper-button-prev'
         }
       },
-      phoneList: [
-        [1, 1, 1, 1], [1, 1, 1, 1]
-      ],
+      phoneList: [],
       slideList: [
         { id: '42', img: '/imgs/slider/slide-1.jpg' },
         { id: '45', img: '/imgs/slider/slide-2.jpg' },
@@ -155,6 +160,46 @@ export default {
         { id: 45, img: '/imgs/ads/ads-3.png' },
         { id: 47, img: '/imgs/ads/ads-4.jpg' }
       ]
+    }
+  },
+  mounted () {
+    this.init()
+  },
+  filters: {
+    currency (val) {
+      if (!val) return '0.00'
+      return '￥' + val.toFixed(2) + '元'
+    }
+  },
+  methods: {
+    confirm () {
+      this.$router.push('/cart')
+    },
+    addCart (id) {
+      this.showModal = true
+      // this.axios.post('/carts', {
+      //   productId: id,
+      //   selected: true
+      // }).then((res) => {
+      //   console.log(res)
+      // }).catch(() => {
+      //   this.showModal = true
+      // })
+    },
+    init () {
+      this.axios.get('/products', {
+        params: {
+          categoryId: 100012,
+          pageSize: 14
+        }
+      }).then((res) => {
+        console.log(res)
+        const newList = res.list.slice(6, 14)
+        const listArr = newList.slice(0, 4)
+        const newArr = newList.slice(4, 8)
+        this.phoneList = [listArr, newArr]
+        console.log(this.phoneList)
+      })
     }
   }
 }
@@ -295,9 +340,26 @@ export default {
               background-color: $colorG;
               text-align: center;
               span{
+                display: inline-block;
+                width: 67px;
+                height: 24px;
+                line-height: 24px;
+                color: $colorG;
+                &.kill-pro{
+                  background-color: #E82626;
+                }
+                &.new-pro{
+                  background-color: #7ECF68;
+                }
               }
               .item-img{
                 height: 195px;
+                width: 100%;
+                img{
+                    width: auto;
+                    height: 169px;
+                    margin-top: 26px;
+                  }
               }
               .item-info{
                 h3{
