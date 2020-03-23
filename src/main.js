@@ -5,12 +5,13 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 import store from './store'
 import VueLazyLoad from 'vue-lazyload'
+import VueCookie from 'vue-cookie'
 // import env from './env'
 // 根据前端的跨域方式做调整
 
 // axios.defaults.baseURL = 'http://test-www.imooc.com/api'
 // mock 开关
-const mock = true
+const mock = false
 if (mock) {
   require('./mock/api')
 }
@@ -23,18 +24,23 @@ axios.defaults.baseURL = '/api'
 axios.interceptors.response.use(function (response) {
   // eslint-disable-next-line prefer-const
   let res = response.data
+  const path = location.hash
   // eslint-disable-next-line eqeqeq
   if (res.status == 0) {
     return res.data
   // eslint-disable-next-line eqeqeq
   } else if (res.status == 10) {
-    window.location.href = '/#/login'
+    if (path !== '#/index') {
+      window.location.href = '/#/login'
+    }
   } else {
     alert(res.msg)
+    return Promise.reject(res)
   }
 })
 
 Vue.use(VueAxios, axios)
+Vue.use(VueCookie)
 Vue.use(VueLazyLoad, {
   loading: './imgs/loading-svg/loading-bars.svg'
 })
