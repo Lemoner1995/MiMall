@@ -40,6 +40,7 @@
     </div>
 </template>
 <script>
+import { mapActions } from 'vuex'
 export default {
   name: 'login',
   data () {
@@ -60,11 +61,14 @@ export default {
       }).then((res) => {
         // console.log(this.username)
         // console.log(res)
+        this.$cookie.set('userId', res.id, { expires: '1M' })
+        // this.$store.dispatch('saveUserName')
+        this.saveUserName(res.username)
         this.$router.push('/index')
-        // this.$cookie.set('userId', res.id, { expires: '1M' })
         // this.$cookie.set('userName', res.username, { expires: '1M' })
       })
     },
+    ...mapActions(['saveUserName']),
     register () {
       this.axios.post('/user/register', {
         username: 'Narcissus',
