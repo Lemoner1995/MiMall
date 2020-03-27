@@ -2,7 +2,7 @@
     <div class="nav-bar" :class="{'is_fixed':isFixed}">
         <div class="container">
             <div class="pro-title">
-                小米10
+                {{title}}
             </div>
             <div class="pro-param">
                 <a href="javascript:;">概述</a><span>|</span>
@@ -20,6 +20,9 @@ export default {
     return {
       isFixed: false
     }
+  },
+  props: {
+    title: String
   },
   methods: {
     initHeight () {
@@ -44,6 +47,7 @@ export default {
 @import './../assets/scss/modal.scss';
 @import './../assets/scss/button.scss';
     .nav-bar{
+        z-index: 10;
         height: 70px;
         line-height: 70px;
         border-top: 1px solid $colorH;
