@@ -21,7 +21,7 @@
             <div class="item-addr">
               <i class="icon-loc"></i>
               <div class="addr">北京 北京市 朝阳区 安定门街道</div>
-              <div class="stock">有现货</div>
+              <div class="stock">有现货1</div>
             </div>
             <div class="item-version clearfix">
               <h2>选择版本</h2>
