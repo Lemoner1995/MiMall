@@ -1,11 +1,58 @@
 <template>
-    <div>
-      <h2>ordheader</h2>
+    <div class="order-header">
+      <div class="container clearfix">
+        <div class="header-logo">
+          <a href="/#/index"></a>
+        </div>
+        <div class="title">
+          <h2>{{title}}<slot name="tip"></slot></h2>
+        </div>
+        <div class="username">
+          <a href="javascript:;">Narcissus</a>
+        </div>
+      </div>
     </div>
 </template>
 
 <script>
 export default {
-  name: 'order-header'
+  name: 'order-header',
+  props: {
+    title: String
+  }
 }
 </script>
+<style lang="scss">
+  .order-header{
+    height: 112px;
+    padding: 30px 0;
+    .header-logo{
+      float: left;
+    }
+    .title,.username{
+      display: inline-block;
+      height: 55px;
+      line-height: 55px;
+    }
+    .title{
+      margin-left: 54px;
+      font-size: 28px;
+      float: left;
+      color: #333333;
+      span{
+        font-size: 14px;
+        margin-left: 17px;
+        color: #999999;
+        font-weight:bold ;
+      }
+    }
+    .username{
+      float:right;
+      a{
+        // display: inline-block;
+        color: #666666;
+        font-size: 16px;
+      }
+    }
+  }
+</style>

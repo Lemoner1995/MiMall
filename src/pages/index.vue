@@ -56,14 +56,14 @@
             <div class="swiper-button-next" slot="button-next"></div>
           </swiper>
         </div>
-        <div class="banner">
-          <a href="/#/product/30">
-            <img v-lazy="'/imgs/banner-1.png'" alt="">
-          </a>
-        </div>
         <div class="ads-box">
           <a :href="'/#/product/'+item.id" v-for="(item, index) in adsList" :key="index">
             <img v-lazy="item.img" alt="">
+          </a>
+        </div>
+        <div class="banner">
+          <a href="/#/product/30">
+            <img v-lazy="'/imgs/banner-1.png'" alt="">
           </a>
         </div>
       </div>

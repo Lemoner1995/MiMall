@@ -1,7 +1,11 @@
 <template>
     <div>
-      <order-header></order-header>
-      cart
+      <order-header title="我的购物车">
+        <template v-slot:tip>
+          <span>温馨提示：产品是否购买成功，以最终下单为准噢，请尽快结算</span>
+        </template>
+      </order-header>
+      <service-bar></service-bar>
       <order-footer></order-footer>
     </div>
 </template>
@@ -10,8 +14,9 @@
 
 import OrderHeader from './../components/OrderHeader'
 import OrderFooter from './../components/OrderFooter'
+import ServiceBar from './../components/ServiceBar'
 export default {
   name: 'cart',
-  components: { OrderHeader, OrderFooter }
+  components: { OrderHeader, OrderFooter, ServiceBar }
 }
 </script>

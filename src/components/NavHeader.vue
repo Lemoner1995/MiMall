@@ -235,6 +235,7 @@ export default {
   @import './../assets/scss/mixin.scss';
   @import './../assets/scss/config.scss';
   .header{
+    position: relative;
     .nav-topbar{
       height: 39px;
       line-height: 39px;
@@ -262,36 +263,11 @@ export default {
     }
     .nav-header{
         position: relative;
+        width: 100%;
       .container{
-        // position: relative;
+        position: static;
         height: 112px;
         @include flex();
-        .header-logo{
-          display: inline-block;
-          width: 55px;
-          height: 55px;
-          background-color: #FF6600;
-          a{
-            display: inline-block;
-            width: 110px;
-            height: 55px;
-            &::before{
-              content: '';
-              display: inline-block;
-              @include bgImg(55px,55px,'/imgs/mi-logo.png');
-              transition: margin .2s;
-            }
-            &::after{
-              content: '';
-              display: inline-block;
-              @include bgImg(55px,55px,'/imgs/mi-home.png');
-            }
-            &:hover::before{
-              margin-left: -55px;
-              transition: margin .2s;
-            }
-          }
-        }
         .header-menu{
           display: inline-block;
           padding-left: 209px;
