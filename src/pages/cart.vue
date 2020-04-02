@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 <template>
     <div class="cart">
       <order-header title="我的购物车">
@@ -19,7 +20,7 @@
             <ul class="cart-item-list">
               <li class="cart-item" v-for="( item, index) in list" :key="index">
                 <div class="item-check">
-                  <span class="checkbox" :class="{'checked' : item.productSelected}"></span>
+                  <span class="checkbox" @click="updateCate(item)" :class="{'checked' : item.productSelected}"></span>
                 </div>
                 <div class="item-name">
                   <img v-lazy="item.productMainImage" alt="">
@@ -28,13 +29,13 @@
                 <div class="item-price">{{item.productPrice}}</div>
                 <div class="item-num">
                   <div class="num-box">
-                    <a href="javascript:;">-</a>
+                    <a href="javascript:;" @click="updateCate(item, '-')">-</a>
                     <span>{{item.quantity}}</span>
-                    <a href="javascript:;">+</a>
+                    <a href="javascript:;" @click="updateCate(item, '+')">+</a>
                   </div>
                 </div>
                 <div class="item-total">{{item.productPrice*item.quantity | currency}}</div>
-                <div class="item-del"></div>
+                <div class="item-del" @click="deleteProduct(item)"></div>
               </li>
             </ul>
           </div>
@@ -52,23 +53,30 @@
       </div>
       <service-bar></service-bar>
       <order-footer></order-footer>
+      <modal modalType="middle" title="温馨提示" @cancel="showModal=false" @confirm="confirm" btnType='3' :showModal="showModal">
+        <template v-slot:body>
+          <p>是否要删除购物车物品?</p>
+        </template>
+      </modal>
     </div>
 </template>
 
 <script>
-
+import Modal from './../components/Modal'
 import OrderHeader from './../components/OrderHeader'
 import OrderFooter from './../components/OrderFooter'
 import ServiceBar from './../components/ServiceBar'
 export default {
   name: 'cart',
-  components: { OrderHeader, OrderFooter, ServiceBar },
+  components: { OrderHeader, OrderFooter, ServiceBar, Modal },
   data () {
     return {
+      showModal: false,
       allChecked: false,
       list: [],
       cartTotalPrice: 0,
-      checkedNum: 0
+      checkedNum: 0,
+      newItem: {}
     }
   },
   filters: {
@@ -84,17 +92,69 @@ export default {
     // 购物车下单
     getCartList () {
       this.axios.get('/carts').then((res) => {
-        this.list = res.cartProductVoList || []
-        this.allChecked = res.selectedAll
-        this.cartTotalPrice = res.cartTotalPrice
-        this.checkedNum = this.list.filter(item => item.productSelected).length
+        this.renderData(res)
       })
     },
     order () {
-      this.$router.push('/order/confirm')
+      // eslint-disable-next-line prefer-const
+      let isCheck = this.list.every(item => !item.productSelected)
+      if (isCheck) {
+        alert('请选择一件商品')
+      } else {
+        this.$router.push('/order/confirm')
+      }
     },
     toggleAll () {
-
+      const path = this.allChecked ? '/carts/unSelectAll' : '/carts/selectAll'
+      this.axios.put(path).then((res) => {
+        this.renderData(res)
+      })
+    },
+    renderData (res) {
+      this.list = res.cartProductVoList || []
+      this.allChecked = res.selectedAll
+      this.cartTotalPrice = res.cartTotalPrice
+      this.checkedNum = this.list.filter(item => item.productSelected).length
+    },
+    deleteProduct (item) {
+      this.showModal = true
+      this.newItem = item
+    },
+    confirm () {
+      // eslint-disable-next-line prefer-const
+      let productId = this.newItem.productId
+      this.axios.delete('/carts/' + productId).then((res) => {
+        this.renderData(res)
+        this.showModal = false
+      })
+    },
+    updateCate (item, type) {
+      let quantity = item.quantity
+      // eslint-disable-next-line no-unused-vars
+      let selected = item.productSelected
+      if (type === '-') {
+        if (quantity === 1) {
+          alert('商品至少保留一件')
+          // eslint-disable-next-line no-useless-return
+          return
+        }
+        --quantity
+      } else if (type === '+') {
+        if (quantity > item.productStock) {
+          alert('商品不能超过库存数量')
+          // eslint-disable-next-line no-useless-return
+          return
+        }
+        ++quantity
+      } else {
+        selected = !item.productSelected
+      }
+      this.axios.put('/carts/' + item.productId, {
+        quantity,
+        selected
+      }).then((res) => {
+        this.renderData(res)
+      })
     }
   }
 }

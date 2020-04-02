@@ -11,8 +11,8 @@
                 <slot name="body"></slot>
             </div>
             <div class="modal-footer">
-                <a href="javascript:;" class="btn" v-if="btnType == 1" @click="$emit('confirm')">{{sureText}}</a>
-                <a href="javascript:;" class="btn" v-else-if="btnType == 2" @click="$emit('cancel')">取消</a>
+                <a href="javascript:;" class="btn" v-if="btnType == '1'" @click="$emit('confirm')">{{sureText}}</a>
+                <a href="javascript:;" class="btn" v-else-if="btnType == '2'" @click="$emit('cancel')">取消</a>
                 <div class="btn-group" v-else>
                      <a href="javascript:;" @click="$emit('confirm')" class="btn">{{sureText}}</a>
                      <a href="javascript:;" @click="$emit('cancel')" class="btn btn-default">取消</a>
