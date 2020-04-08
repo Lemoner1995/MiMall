@@ -61,10 +61,15 @@ export default {
       }).then((res) => {
         // console.log(this.username)
         // console.log(res)
-        this.$cookie.set('userId', res.id, { expires: '1M' })
+        this.$cookie.set('userId', res.id, { expires: 'Session' })
         // this.$store.dispatch('saveUserName')
         this.saveUserName(res.username)
-        this.$router.push('/index')
+        this.$router.push({
+          name: 'index',
+          params: {
+            from: 'login'
+          }
+        })
         // this.$cookie.set('userName', res.username, { expires: '1M' })
       })
     },
