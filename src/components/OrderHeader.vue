@@ -26,7 +26,8 @@ export default {
 </script>
 <style lang="scss">
   .order-header{
-    height: 112px;
+    // height: 112px;
+    border-bottom:2px solid #FF6600;
     padding: 30px 0;
     .header-logo{
       float: left;

@@ -1,5 +1,10 @@
 <template>
     <div>
+      <order-header title="订单支付">
+        <template v-slot:tip>
+          <span>请谨防钓鱼链接呼噢诈骗电话，点击了解更多</span>
+        </template>
+      </order-header>
       <div class="ali-pay">
         <loading v-if="loading"></loading>
         <div class="form" v-html="content"></div>
@@ -9,6 +14,7 @@
 
 <script>
 import Loading from '../components/Loading'
+import OrderHeader from './../components/OrderHeader'
 export default {
   name: 'alipay',
   data () {
@@ -18,7 +24,7 @@ export default {
       loading: true
     }
   },
-  components: { Loading },
+  components: { Loading, OrderHeader },
   methods: {
     paySubmit () {
       this.axios.post('/pay', { orderId: this.orderId, orderName: 'Vue高仿小米商城', amount: '0.01', payType: 1 }).then((res) => {

@@ -1,10 +1,10 @@
 <template>
   <div class="order-pay">
-    <!-- <order-header title="订单支付">
+    <order-header title="订单支付">
       <template v-slot:tip>
         <span>请谨防钓鱼链接或诈骗电话，了解更多</span>
       </template>
-    </order-header> -->
+    </order-header>
     <div class="wrapper">
       <div class="container">
         <div class="order-wrap">
@@ -74,7 +74,7 @@
   </div>
 </template>
 <script>
-// import OrderHeader from './../components/OrderHeader'
+import OrderHeader from './../components/OrderHeader'
 import ScanPayCode from './../components/ScanPayCode'
 import Modal from './../components/Modal'
 import QRCode from 'qrcode'
@@ -90,11 +90,12 @@ export default {
       showPay: false, // 是否显示微信支付弹框
       payType: '',
       payImg: '',
-      showPayModal: false
+      showPayModal: false,
+      T: ''
     }
   },
   components: {
-    // OrderHeader,
+    OrderHeader,
     ScanPayCode,
     Modal
   },
@@ -110,6 +111,7 @@ export default {
           QRCode.toDataURL(res.content).then(url => {
             this.showPay = true
             this.payImg = url
+            this.loopOrderState()
           }).catch(err => {
             console.error(err)
           })
@@ -130,6 +132,16 @@ export default {
       this.showPay = false
       this.showPayModal = true
       clearInterval(this.T)
+    },
+    loopOrderState () {
+      this.T = setInterval(() => {
+        this.axios.get('/orders/' + this.orderId).then((res) => {
+          if (res.status === 20) {
+            clearInterval(this.T)
+            this.goOrderList()
+          }
+        })
+      }, 1000)
     },
     goOrderList () {
       this.$router.push('/order/list')

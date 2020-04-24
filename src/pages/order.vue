@@ -1,10 +1,5 @@
 <template>
     <div>
-      <order-header :title="title">
-        <template v-slot:tip>
-          <span>{{tip}}</span>
-        </template>
-      </order-header>
       <router-view></router-view>
       <service-bar></service-bar>
       <order-footer></order-footer>
@@ -12,12 +7,12 @@
 </template>
 
 <script>
-import OrderHeader from './../components/OrderHeader'
+// import OrderHeader from './../components/OrderHeader'
 import OrderFooter from './../components/OrderFooter'
 import ServiceBar from './../components/ServiceBar'
 export default {
   name: 'order',
-  components: { OrderHeader, OrderFooter, ServiceBar },
+  components: { OrderFooter, ServiceBar },
   data () {
     return {
       title: '',

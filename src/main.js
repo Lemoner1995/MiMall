@@ -6,6 +6,8 @@ import VueAxios from 'vue-axios'
 import store from './store'
 import VueLazyLoad from 'vue-lazyload'
 import VueCookie from 'vue-cookie'
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
 // import env from './env'
 // 根据前端的跨域方式做调整
 
@@ -38,8 +40,13 @@ axios.interceptors.response.use(function (response) {
     alert(res.msg)
     return Promise.reject(res)
   }
+}, (error) => {
+  // eslint-disable-next-line prefer-const
+  let res = error.response
+  alert(res.data.message)
+  return Promise.reject(error)
 })
-
+Vue.use(ElementUI)
 Vue.use(VueAxios, axios)
 Vue.use(VueCookie)
 Vue.use(VueLazyLoad, {

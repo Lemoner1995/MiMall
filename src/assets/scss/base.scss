@@ -48,10 +48,10 @@
  .fr{
    float: right;
  }
- .clearfix:before, .clearfix::after{
+ .clearfix:before, .clearfix:after{
    content: '';
    display: table;
  }
- .clearfix::after{
+ .clearfix:after{
    clear: both;
  }

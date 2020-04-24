@@ -99,7 +99,7 @@ export default {
       // eslint-disable-next-line prefer-const
       let isCheck = this.list.every(item => !item.productSelected)
       if (isCheck) {
-        alert('请选择一件商品')
+        this.$message.warning('请选择一件商品')
       } else {
         this.$router.push('/order/confirm')
       }
