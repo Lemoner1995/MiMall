@@ -81,7 +81,7 @@ export default {
       // eslint-disable-next-line prefer-const
       let id = this.$route.params.id
       this.axios.get('/products/' + id).then((res) => {
-        console.log(res)
+        // console.log(res)
         this.product = res
       })
     },

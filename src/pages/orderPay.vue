@@ -113,7 +113,7 @@ export default {
             this.payImg = url
             this.loopOrderState()
           }).catch(err => {
-            console.error(err)
+            alert(err)
           })
         })
       }

@@ -46,11 +46,11 @@
                 </div>
               </div>
             </div>
-            <el-pagination v-if="false" class="pagination" layout="prev,pager,next" @current-change="handleChange" background :total="total" :pageSize=pageSize></el-pagination>
-            <div v-if="buttonshow" class="load-more">
+            <el-pagination v-if="true" class="pagination" layout="prev,pager,next" @current-change="handleChange" background :total="total" :pageSize=pageSize></el-pagination>
+            <div v-if="false && buttonshow" class="load-more">
                <el-button type="primary" :loading="loading" @click="loadMore">加载更多</el-button>
             </div>
-            <div class="scroll-more" v-infinite-scroll="scrollMore"  infinite-scroll-disabled="busy" infinite-scroll-distance="500">
+            <div  v-if="false"  class="scroll-more" v-infinite-scroll="scrollMore"  infinite-scroll-disabled="busy" infinite-scroll-distance="500">
               <img v-show="loading" src="/imgs/loading-svg/loading-spinning-bubbles.svg" alt="">
             </div>
             <no-data v-if="!loading && list.length==0"></no-data>
@@ -77,7 +77,7 @@ export default {
     return {
       loading: false,
       list: [],
-      pageSize: 2,
+      pageSize: 5,
       pageNum: 1,
       total: 0,
       buttonshow: false,
@@ -113,7 +113,7 @@ export default {
           pageSize: this.pageSize
         }
       }).then((res) => {
-        this.list = this.list.concat(res.list)
+        this.list = res.list
         this.total = res.total
         this.loading = false
         this.busy = false

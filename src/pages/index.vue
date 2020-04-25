@@ -194,12 +194,12 @@ export default {
           pageSize: 14
         }
       }).then((res) => {
-        console.log(res)
+        // console.log(res)
         const newList = res.list.slice(6, 14)
         const listArr = newList.slice(0, 4)
         const newArr = newList.slice(4, 8)
         this.phoneList = [listArr, newArr]
-        console.log(this.phoneList)
+        // console.log(this.phoneList)
       })
     }
   }
