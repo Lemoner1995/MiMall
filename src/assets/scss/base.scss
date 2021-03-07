@@ -7,28 +7,28 @@
   }
   .header-logo{
     display: inline-block;
-    width: 55px;
-    height: 55px;
-    background-color: #FF6600;
+    width: 100px;
+    height: 100px;
+    // background-color: #FF6600;
     a{
       display: inline-block;
-      width: 110px;
-      height: 55px;
+      width: 100px;
+      height: 100px;
       &::before{
         content: '';
         display: inline-block;
-        @include bgImg(55px,55px,'/imgs/mi-logo.png');
+        @include bgImg(100px,100px,'/imgs/ll.png');
         transition: margin .2s;
       }
-      &::after{
-        content: '';
-        display: inline-block;
-        @include bgImg(55px,55px,'/imgs/mi-home.png');
-      }
-      &:hover::before{
-        margin-left: -55px;
-        transition: margin .2s;
-      }
+      // &::after{
+      //   content: '';
+      //   display: inline-block;
+      //   @include bgImg(55px,55px,'/imgs/mi-home.png');
+      // }
+      // &:hover::before{
+      //   margin-left: -55px;
+      //   transition: margin .2s;
+      // }
     }
   } 
  a{

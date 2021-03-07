@@ -1,98 +1,6 @@
 <template>
     <div class="index">
-      <div class="container">
-        <div class="swiper-box">
-          <div class="nav-menu">
-            <ul class="menu-wrap">
-              <li class="menu-item">
-                <a href="javascript">手机 电话卡</a>
-                <div class="children">
-                  <ul v-for="(item, index) in menuList" :key="index">
-                    <li v-for="(subitem, index2) in item" :key="index2">
-                      <a :href="subitem?'/#/product/'+subitem.id:''">
-                        <img :src="subitem?subitem.img : '/imgs/item-box-1.png'" alt="">
-                        {{subitem?subitem.name : '小米9'}}
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </li>
-              <li class="menu-item">
-                <a href="javascript">电视 盒子</a>
-                <div class="children"></div>
-              </li>
-              <li class="menu-item">
-                <a href="javascript">笔记本 平板</a>
-                <div class="children"></div>
-              </li>
-              <li class="menu-item">
-                <a href="javascript">家电 插线板</a>
-                <div class="children"></div>
-              </li>
-              <li class="menu-item">
-                <a href="javascript">出行 穿戴</a>
-                <div class="children"></div>
-              </li>
-              <li class="menu-item">
-                <a href="javascript">智能 路由器</a>
-                <div class="children"></div>
-              </li>
-              <li class="menu-item">
-                <a href="javascript">电源 配件</a>
-                <div class="children"></div>
-              </li>
-              <li class="menu-item">
-                <a href="javascript">生活 箱包</a>
-                <div class="children"></div>
-              </li>
-            </ul>
-          </div>
-          <swiper :options="swiperOption">
-            <swiper-slide v-for="(item,index) in slideList" :key="index">
-              <a :href="'/#/product/'+item.id"><img :src="item.img" alt=""></a>
-            </swiper-slide>
-            <div class="swiper-pagination"  slot="pagination"></div>
-            <div class="swiper-button-prev" slot="button-prev"></div>
-            <div class="swiper-button-next" slot="button-next"></div>
-          </swiper>
-        </div>
-        <div class="ads-box">
-          <a :href="'/#/product/'+item.id" v-for="(item, index) in adsList" :key="index">
-            <img v-lazy="item.img" alt="">
-          </a>
-        </div>
-        <div class="banner">
-          <a href="/#/product/30">
-            <img v-lazy="'/imgs/banner-1.png'" alt="">
-          </a>
-        </div>
-      </div>
-      <div class="product-box">
-          <div class="container">
-            <h2>手机</h2>
-            <div class="wrapper">
-              <div class="banner-left">
-                <a href="/#/product/35"><img v-lazy="'/imgs/mix-alpha.jpg'" alt=""></a>
-              </div>
-              <div class="list-box">
-                <div class="list" v-for="(item, index1) in phoneList" :key="index1">
-                  <div class="item" v-for="(arr, index2) in item" :key="index2">
-                    <span :class="{'new-pro':index2%2==0}">新品</span>
-                    <div class="item-img">
-                      <img v-lazy="arr.mainImage" alt="">
-                    </div>
-                    <div class="item-info">
-                      <h3>{{arr.name}}</h3>
-                      <p>{{arr.subtitle}}</p>
-                      <p class="price" @click="addCart(arr.id)">{{arr.price | currency}}</p>
-                    </div>
-                  </div>
-                </div>
-                <!-- <div class="list"></div> -->
-              </div>
-            </div>
-          </div>
-        </div>
+
       <service-bar></service-bar>
       <modal title="提示" sureText="查看购物车" btnType="1" modalType="middle" @confirm="confirm" @cancel="showModal=false" :showModal="showModal">
         <template v-slot:body>
@@ -105,11 +13,11 @@
 <script>
 import ServiceBar from './../components/ServiceBar'
 import Modal from './../components/Modal'
-import { swiper, swiperSlide } from 'vue-awesome-swiper'
-import 'swiper/dist/css/swiper.css'
+// import { swiper, swiperSlide } from 'vue-awesome-swiper'
+// import 'swiper/dist/css/swiper.css'
 export default {
   name: 'index',
-  components: { Modal, ServiceBar, swiper, swiperSlide },
+  components: { Modal, ServiceBar },
   data () {
     return {
       showModal: false,

@@ -1,22 +1,5 @@
 <template>
     <div class="header">
-      <div class="nav-topbar">
-        <div class="container">
-          <div class="topbar-menu">
-            <a href="javascript:;">小米商城</a>
-            <a href="javascript:;">MUI</a>
-            <a href="javascript:;">云服务</a>
-            <a href="javascript:;">协议规则</a>
-          </div>
-          <div class="topbar-user">
-            <a href="javascript:;" v-if="username">{{username}}</a>
-            <a href="javascript:;" v-if="!username" @click="login">登录</a>
-            <a href="javascript:;" v-if="username" @click="logout">退出</a>
-            <a href="/#/order/list" v-if="username">我的订单</a>
-            <a href="javascript:;" class="my-cart" @click="goToCart"><span class="icon-cart"></span>购物车({{cartCount}})</a>
-          </div>
-        </div>
-      </div>
       <div class="nav-header">
         <div class="container">
           <div class="header-logo">
@@ -24,88 +7,17 @@
           </div>
           <div class="header-menu">
             <div class="item-menu">
-              <span>小米手机</span>
-              <div class="children">
-                <ul>
-                  <li class="product" v-for="(item,index) in phoneList" :key="index">
-                    <a v-bind:href="'/#/product/'+item.id" target="_blank">
-                      <div class="pro-img">
-                        <img v-lazy="item.mainImage" alt="item.subtitle">
-                      </div>
-                      <div class="pro-name">{{item.name}}</div>
-                      <div class="pro-price">{{item.price | currency}}</div>
-                    </a>
-                  </li>
-                </ul>
-              </div>
+              <span>公司介绍</span>
             </div>
             <div class="item-menu">
-              <span>红米手机</span>
-              <div class="children">
-                <ul>
-                  <li class="product">
-                    <a href="" target="_blank">
-                      <div class="pro-img">
-                        <img v-lazy="'https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/cff2977b8aab1e43b94b2f00083f4ae1.jpg?thumb=1&w=160&h=110&f=webp&q=90'" alt="">
-                      </div>
-                      <div class="pro-name">RedMi K30</div>
-                      <div class="pro-price">1599元</div>
-                    </a>
-                  </li>
-                  <li class="product">
-                    <a href="" target="_blank">
-                      <div class="pro-img">
-                        <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/742a328bdaa242aea89ec2a9c8661013.jpg?thumb=1&w=160&h=110&f=webp&q=90" alt="">
-                      </div>
-                      <div class="pro-name">RedMi K30 5G</div>
-                      <div class="pro-price">1999元</div>
-                    </a>
-                  </li>
-                  <li class="product">
-                    <a href="" target="_blank">
-                      <div class="pro-img">
-                        <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/398311b2e6f47ac324ba0421a0ac1b80.png?thumb=1&w=160&h=110&f=webp&q=90" alt="">
-                      </div>
-                      <div class="pro-name">RedMi 8A</div>
-                      <div class="pro-price">599元</div>
-                    </a>
-                  </li>
-                  <li class="product">
-                    <a href="" target="_blank">
-                      <div class="pro-img">
-                        <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/dacd6a3d8440b7a038e9778702bd6db6.png?thumb=1&w=160&h=110&f=webp&q=90" alt="">
-                      </div>
-                      <div class="pro-name">RedMi Note 8</div>
-                      <div class="pro-price">899元</div>
-                    </a>
-                  </li>
-                  <li class="product">
-                    <a href="" target="_blank">
-                      <div class="pro-img">
-                        <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/8ee0af37bbd2f5a83c799e87dd791037.png?thumb=1&w=160&h=110&f=webp&q=90" alt="">
-                      </div>
-                      <div class="pro-name">RedMi Note 8 Pro</div>
-                      <div class="pro-price">1299元</div>
-                    </a>
-                  </li>
-                  <li class="product">
-                    <a href="" target="_blank">
-                      <div class="pro-img">
-                        <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a9734e0314fec470ff6912a8a92da5e6.png?thumb=1&w=160&h=110&f=webp&q=90" alt="">
-                      </div>
-                      <div class="pro-name">RedMi 8</div>
-                      <div class="pro-price">699元</div>
-                    </a>
-                  </li>
-                </ul>
-              </div>
+              <span>面料成分</span>
             </div>
             <div class="item-menu">
-              <span>RedMi手机</span>
+              <span>面临类型</span>
               <!-- <div class="children"></div> -->
             </div>
             <div class="item-menu">
-              <span>电视</span>
+              <span>生产</span>
               <div class="children">
                 <ul>
                   <li class="product">
@@ -165,13 +77,19 @@
                 </ul>
               </div>
             </div>
+            <div class="item-menu">
+              <span>常见问题</span>
+            </div>
+            <div class="item-menu">
+              <span>联系</span>
+            </div>
           </div>
-          <div class="header-search">
+          <!-- <div class="header-search">
             <div class="wrapper">
               <input type="text" name="keyword">
               <a href="javascript:;"></a>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
@@ -259,6 +177,7 @@ export default {
       background-color: #333333;
       color: #B0B0B0;
       .container{
+        background-color: #333333;
         @include flex();
         a{
           display: inline-block;
@@ -279,6 +198,7 @@ export default {
       }
     }
     .nav-header{
+        background-color: rgba(22, 22, 22, 0.9);
         position: relative;
         width: 100%;
       .container{
@@ -288,10 +208,12 @@ export default {
         .header-menu{
           display: inline-block;
           padding-left: 209px;
-          width: 643px;
+          width: 924px;
+          display: flex;
+          justify-content: space-between;
           .item-menu{
             display: inline-block;
-            color: #333333;
+            color: #fff;
             font-weight: bold;
             font-size: 16px;
             line-height: 112px;
