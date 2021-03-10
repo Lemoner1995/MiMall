@@ -1,5 +1,5 @@
 <template>
-    <div class="header">
+    <div class="header" :class="{'is_fixed':isFixed}">
       <div class="nav-header">
         <div class="container">
           <div class="header-logo">
@@ -101,7 +101,8 @@ export default {
   name: 'nav-header',
   data () {
     return {
-      phoneList: []
+      phoneList: [],
+      isFixed: false
     }
   },
   computed: {
@@ -124,8 +125,18 @@ export default {
     if (this.$route.params && this.$route.params.from === 'login') {
       this.getCartCount()
     }
+    window.addEventListener('scroll', this.initHeight)
+  },
+  destroyed () {
+    window.removeEventListener('scroll', this.initHeight, false)
   },
   methods: {
+    initHeight () {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+      // eslint-disable-next-line no-unneeded-ternary
+      this.isFixed = scrollTop > 50 ? true : false
+      console.log(scrollTop)
+    },
     getProductList () {
       this.axios.get('/products', {
         params: {
@@ -169,9 +180,40 @@ export default {
   @import './../assets/scss/base.scss';
   @import './../assets/scss/mixin.scss';
   @import './../assets/scss/config.scss';
+  @keyframes scale{
+      100%{
+          opacity: 0;
+          transform: scale(2.5);
+      }
+  }
   .header{
-    position: relative;
+    position: absolute;
+    width: 100%;
+    &.is_fixed{
+        width: 100%;
+        position: fixed;
+        top: 0;
+        .nav-header{
+          height: 80px !important;
+          // animation: height 1s ease-in-out  infinite;
+        }
+        .container{
+          height: 80px !important;
+        }
+        .header-logo{
+          // a::before{
+          //   height: 70px;
+          //   width: 70px;
+          // }
+          transform: scale(0.6);
+        }
+        .item-menu{
+          line-height: 66px !important;
+        }
+        // box-shadow: 0 5px 5px $colorE;
+    }
     .nav-topbar{
+      position: relative;
       height: 39px;
       line-height: 39px;
       background-color: #333333;

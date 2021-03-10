@@ -1,6 +1,21 @@
 <template>
     <div class="index">
-
+      <div class="banner_content">
+        <div class="banner_img">
+          <div class="banner_container">
+            <div class="banner_center">
+              <div class="context_area">
+                <span>Mefe面料纺织品针织面料生产商</span>
+                <span>凭借多年的针织面料生产经验，现已成为出口市场。</span>
+                <span>意大利-西班牙-希腊-罗曼尼亚-俄罗斯-突尼斯...</span>
+              </div>
+              <div class="button_area">
+                <el-button>面料订单</el-button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <service-bar></service-bar>
       <modal title="提示" sureText="查看购物车" btnType="1" modalType="middle" @confirm="confirm" @cancel="showModal=false" :showModal="showModal">
         <template v-slot:body>
@@ -117,6 +132,63 @@ export default {
 @import './../assets/scss/mixin.scss';
 @import './../assets/scss/config.scss';
   .index{
+    .banner_content{
+      // position: absolute;
+      width: 100%;
+    }
+    .banner_img{
+      @include bgImg(100%,100%,'/imgs/bannermain.jpg');
+      height: 680px;
+      background-size: cover;
+      -webkit-background-size: cover;
+      -o-background-size: cover;
+      background-position: center 0;
+      .banner_container{
+        padding-top: 150px;
+        display: flex !important;
+        justify-content: center;
+        align-items: center;
+      }
+      .banner_center{
+        display: flex;
+        flex-direction: column;
+        width:450px;
+        height: 450px;
+        border-radius: 50%;
+        background-color: rgba(160, 38, 47, 0.9);
+        .context_area{
+          padding: 140px 0 20px 20px;
+          width: 400px;
+          span{
+            display: inline-block;
+            color: #ffffff;
+            text-align: center;
+            padding: 10px 0;
+            font-size: 14px;
+            &:first-child{
+              overflow-wrap: break-word;
+              white-space: pre-line;
+              letter-spacing: normal;
+              line-height: 45px;
+              font-size: 36px;
+            }
+            &:nth-child(2){
+              display: flex;
+              justify-content: center;
+            }
+            &:last-child{
+              display: flex;
+              justify-content: center;
+              // font-size: 20px;
+            }
+          }
+        }
+        .button_area{
+          display: flex;
+          justify-content: center;
+        }
+      }
+    }
     .swiper-box{
       .nav-menu{
         position: absolute;
