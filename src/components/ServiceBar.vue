@@ -51,7 +51,10 @@ export default {
             color: #A03726;
             padding: 10px 0;
             box-sizing: border-box;
+            margin-bottom: 40px;
             span{
+                width: 210px;
+                text-align: center;
                 position: relative;
                 &:before{
                     margin-right: 24px;
@@ -62,7 +65,7 @@ export default {
                     content: "";
                     position: absolute;
                     top: .70em;
-                    width: 20vw;
+                    width: 24vw;
                     right: 100%;
                 }
                 &::after{
@@ -74,7 +77,7 @@ export default {
                     content: "";
                     position: absolute;
                     top: .70em;
-                    width: 20vw;
+                    width: 24vw;
                     left: 100%;
                 }
             }

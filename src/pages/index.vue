@@ -10,12 +10,13 @@
                 <span>意大利-西班牙-希腊-罗曼尼亚-俄罗斯-突尼斯...</span>
               </div>
               <div class="button_area">
-                <el-button>面料订单</el-button>
+                <el-button type="success" round>面料订单</el-button>
               </div>
             </div>
           </div>
         </div>
       </div>
+      <AboutBar></AboutBar>
       <service-bar></service-bar>
       <modal title="提示" sureText="查看购物车" btnType="1" modalType="middle" @confirm="confirm" @cancel="showModal=false" :showModal="showModal">
         <template v-slot:body>
@@ -26,13 +27,14 @@
 </template>
 
 <script>
-import ServiceBar from './../components/ServiceBar'
-import Modal from './../components/Modal'
+import ServiceBar from '@/components/ServiceBar'
+import AboutBar from '@/components/AboutBar'
+import Modal from '@/components/Modal'
 // import { swiper, swiperSlide } from 'vue-awesome-swiper'
 // import 'swiper/dist/css/swiper.css'
 export default {
   name: 'index',
-  components: { Modal, ServiceBar },
+  components: { Modal, ServiceBar, AboutBar },
   data () {
     return {
       showModal: false,

@@ -20,7 +20,7 @@
               <span>生产</span>
               <div class="children">
                 <ul>
-                  <li class="product">
+                  <!-- <li class="product">
                     <a href="" target="_blank">
                       <div class="pro-img">
                         <img v-lazy="'/imgs/nav-img/nav-3-1.jpg'" alt="">
@@ -73,7 +73,7 @@
                       <div class="pro-name">查看全部</div>
                       <div class="pro-price">查看全部</div>
                     </a>
-                  </li>
+                  </li> -->
                 </ul>
               </div>
             </div>
@@ -187,6 +187,7 @@ export default {
       }
   }
   .header{
+    z-index: 999;
     position: absolute;
     width: 100%;
     &.is_fixed{
@@ -284,9 +285,10 @@ export default {
               left: 0;
               width: 100%;
               height: 0;
-              border-top: 1px solid #E5E5E5;
+              border-top: 1px solid #1b1b1b;
               box-shadow: 0 7px 6px 0 rgba(0,0,0,0.11);
-              background-color: #ffffff;
+              background-color:rgba(22, 22, 22, 0.9);
+              // opacity: 0.8;
               z-index: 10;
               transition: height .5s;
               ul{
